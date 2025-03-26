@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Search Users</title>
+    </head>
+    <body>
+        <h2>Search Users</h2>
+
+        <label for="search">Enter name:</label>
+        <input type="text" id="search" placeholder="Type a name...">
+        <button id="search-btn">Search</button>
+
+        <ul id="user-list"></ul>
+
+        <script>
+            document.getElementById("search-btn").addEventListener("click", fetchUsers);
+
+            function fetchUsers() {
+                const searchInput = document.getElementById("search").value.trim();
+
+                //1. Create URL with query parameters
+                //2. Fetch data from the API (https://jsonplaceholder.typicode.com/users)
+                fetch(url)
+                    .then(response => {
+                        if(!response.ok) {
+                            throw new Error(`HTTP Error: $(response.status)`);
+                        }
+                        //3. Convert response to JSON
+                    })
+                    .then(data => {
+                        const userList = document.getElementById("user-list");
+                        //4. Clear previous results
+                        if(data.length > 0) {
+                            //5. Display user names and emails
+                        } else {
+                            //6. Show message if no results
+                            console.log("No users found.")
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error fetching users:", error);
+                        document.getElementById("user-list").innerHTML = "<li>Error loading users. Please try again.</li>";
+                    });
+            }
+        </script>
+    </body>
+</html>
